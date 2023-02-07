@@ -6,11 +6,10 @@ const Cards = (props) => {
 
 	return (
 		<>
-			{characters.map((character, index) => {
-				return (
-					<div>
+			{characters ? (
+				characters.map((character, index) => (
+					<div key={index}>
 						<Card
-							key={index}
 							name={character.name}
 							species={character.species}
 							gender={character.gender}
@@ -18,8 +17,10 @@ const Cards = (props) => {
 							onClose={() => window.alert('Emulamos que se cierra la card')}
 						/>
 					</div>
-				);
-			})}
+				))
+			) : (
+				<h3>No hay persoanjes</h3>
+			)}
 		</>
 	);
 };
