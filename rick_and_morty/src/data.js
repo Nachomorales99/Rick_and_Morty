@@ -1,5 +1,13 @@
 const characters = [
 	{
+		id: 1,
+		name: 'Rick Sanchez',
+		status: 'Alive',
+		species: 'Human',
+		gender: 'Male',
+		image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+	},
+	{
 		id: 2,
 		name: 'Morty Smith',
 		status: 'Alive',
@@ -24,14 +32,5 @@ const characters = [
 		image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
 	},
 ];
-
-export const Rick = {
-	id: 1,
-	name: 'Rick Sanchez',
-	status: 'Alive',
-	species: 'Human',
-	gender: 'Male',
-	image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-};
 
 export default characters;

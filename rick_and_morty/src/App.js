@@ -1,35 +1,54 @@
-import './App.css';
-import Card from './components/Card/Card.jsx';
 import Cards from './components/Cards.jsx';
-import SearchBar from './components/SearchBar/SearchBar.jsx';
-import characters, { Rick } from './data.js';
-import styled from 'styled-components';
-
-const Contenedor = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-`;
+import Nav from './components/Nav/Nav';
+import React, { useState, useEffect } from 'react';
 
 function App() {
+	const [characters, setCharacters] = useState([
+		{
+			id: 1,
+			name: 'Rick Sanchez',
+			status: 'Alive',
+			species: 'Human',
+			gender: 'Male',
+			image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+		},
+		{
+			id: 2,
+			name: 'Morty Smith',
+			status: 'Alive',
+			species: 'Human',
+			gender: 'Male',
+			image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+		},
+		{
+			id: 3,
+			name: 'Summer Smith',
+			status: 'Alive',
+			species: 'Human',
+			gender: 'Female',
+			image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
+		},
+		{
+			id: 4,
+			name: 'Beth Smith',
+			status: 'Alive',
+			species: 'Human',
+			gender: 'Female',
+			image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
+		},
+	]);
+
+	let onSearch = (event) => {
+		setCharacters([
+			...characters,
+			characters.filter((character) => character.id === event.target.value),
+		]);
+	};
+
 	return (
 		<>
-			<div>
-				<SearchBar onSearch={(characterID) => window.alert(characterID)} />
-			</div>
-			<Contenedor key={Rick.id}>
-				<Card
-					name={Rick.name}
-					species={Rick.species}
-					gender={Rick.gender}
-					image={Rick.image}
-					status={Rick.status}
-					onClose={() => window.alert('Emulamos que se cierra la card')}
-				/>
-			</Contenedor>
-			<div>
-				<Cards characters={characters} />
-			</div>
+			<Nav onSearch={onSearch} />
+			<Cards characters={characters} />
 		</>
 	);
 }

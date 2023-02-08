@@ -13,11 +13,19 @@
 }
 
 .close {
+	color: black;
+	font-size: 15px;
+	margin-bottom: 15px;
 	width: fit-content;
 	height: fit-content;
 	border-radius: 5px;
 	border: none;
 	align-self: flex-end;
+}
+
+.close:hover {
+	color: white;
+	background-color: red;
 }
 
 .photo {
