@@ -3,51 +3,30 @@ import Nav from './components/Nav/Nav';
 import React, { useState, useEffect } from 'react';
 
 function App() {
-	const [characters, setCharacters] = useState([
-		{
-			id: 1,
-			name: 'Rick Sanchez',
-			status: 'Alive',
-			species: 'Human',
-			gender: 'Male',
-			image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-		},
-		{
-			id: 2,
-			name: 'Morty Smith',
-			status: 'Alive',
-			species: 'Human',
-			gender: 'Male',
-			image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
-		},
-		{
-			id: 3,
-			name: 'Summer Smith',
-			status: 'Alive',
-			species: 'Human',
-			gender: 'Female',
-			image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
-		},
-		{
-			id: 4,
-			name: 'Beth Smith',
-			status: 'Alive',
-			species: 'Human',
-			gender: 'Female',
-			image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
-		},
-	]);
+	const [characters, setCharacters] = useState([]);
+	const [inputChar, setInputChar] = React.useState('');
 
-	let onSearch = (event) => {
-		setCharacters([
-			...characters,
-			characters.filter((character) => character.id === event.target.value),
-		]);
+	let onSearch = (id) => {
+		fetch(`https://rickandmortyapi.com/api/character/${id}`)
+			.then((response) => response.json())
+			.then((data) => {
+				data.name
+					? setCharacters([...characters, data])
+					: alert('No hay personajes con ese ID');
+			});
+	};
+
+	let handleAddChar = () => {
+		onSearch(inputChar);
+	};
+
+	let handleChange = (event) => {
+		setInputChar(event.target.value);
 	};
 
 	return (
 		<>
-			<Nav onSearch={onSearch} />
+			<Nav handleAddChar={handleAddChar} handleChange={handleChange} />
 			<Cards characters={characters} />
 		</>
 	);
