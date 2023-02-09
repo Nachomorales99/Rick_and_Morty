@@ -4,7 +4,11 @@ const Card = (props) => {
 	return (
 		<>
 			<div className={styles.container}>
-				<button className={styles.close} onClick={props.onClose}>
+				<button
+					className={styles.close}
+					onClick={props.onClose}
+					value={props.id}
+				>
 					X
 				</button>
 				<img className={styles.photo} src={props.image} alt={props.name} />

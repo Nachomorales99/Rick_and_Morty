@@ -15,15 +15,16 @@ const Cards = (props) => {
 		<>
 			<Contenedor>
 				{characters ? (
-					characters.map((character, index) => (
+					characters.map((character) => (
 						<Card
-							key={index}
+							key={character.id}
+							id={character.id}
 							name={character.name}
 							species={character.species}
 							gender={character.gender}
 							image={character.image}
 							status={character.status}
-							onClose={() => window.alert('Emulamos que se cierra la card')}
+							onClose={props.onClose}
 						/>
 					))
 				) : (

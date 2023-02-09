@@ -9,7 +9,6 @@ const SearchBar = (props) => {
 					className={styles.input}
 					type="search"
 					// onKeyUpCapture={props.onSearch} //Preguntar a Hernan
-					keydown={props.onSearch}
 					onChange={props.handleChange}
 				/>
 				<button className={styles.add} onClick={props.onSearch}>

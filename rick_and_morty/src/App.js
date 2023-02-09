@@ -1,6 +1,6 @@
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav/Nav';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -11,8 +11,10 @@ function App() {
 			.then((response) => response.json())
 			.then((data) => {
 				data.name
-					? setCharacters([...characters, data])
-					: alert('No hay personajes con ese ID');
+					? characters.some((character) => character.id === data.id)
+						? alert('Ya existe ese personaje, ingrese otro')
+						: setCharacters([...characters, data])
+					: alert('No hay personaje con ese ID');
 			});
 	};
 
@@ -24,10 +26,18 @@ function App() {
 		setInputChar(event.target.value);
 	};
 
+	let onClose = (event) => {
+		setCharacters(
+			characters.filter(
+				(character) => character.id != event.currentTarget.value,
+			),
+		);
+	};
+
 	return (
 		<>
 			<Nav handleAddChar={handleAddChar} handleChange={handleChange} />
-			<Cards characters={characters} />
+			<Cards characters={characters} onClose={onClose} />
 		</>
 	);
 }
