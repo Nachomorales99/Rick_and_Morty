@@ -26,6 +26,13 @@ function App() {
 		setInputChar(event.target.value);
 	};
 
+	let handleKeyDown = (event) => {
+		if (event.key === 'Enter') {
+			handleAddChar();
+		}
+		setInputChar((event.target.value = ''));
+	};
+
 	let onClose = (event) => {
 		setCharacters(
 			characters.filter(
@@ -36,7 +43,11 @@ function App() {
 
 	return (
 		<>
-			<Nav handleAddChar={handleAddChar} handleChange={handleChange} />
+			<Nav
+				handleAddChar={handleAddChar}
+				handleChange={handleChange}
+				handleKeyDown={handleKeyDown}
+			/>
 			<Cards characters={characters} onClose={onClose} />
 		</>
 	);

@@ -9,6 +9,7 @@ const Nav = (props) => {
 				<SearchBar
 					onSearch={props.handleAddChar}
 					handleChange={props.handleChange}
+					handleKeyDown={props.handleKeyDown}
 				/>
 			</div>
 		</>
