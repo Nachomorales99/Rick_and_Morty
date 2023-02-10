@@ -1,6 +1,10 @@
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav/Nav';
+import Detail from './components/DetailCharacter/Detail.jsx';
+import About from './components/About/About.jsx';
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import WebStart from './components/WebStart/WebStart.jsx';
 
 function App() {
 	const [characters, setCharacters] = useState([]);
@@ -29,8 +33,8 @@ function App() {
 	let handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			handleAddChar();
+			setInputChar((event.target.value = ''));
 		}
-		setInputChar((event.target.value = ''));
 	};
 
 	let onClose = (event) => {
@@ -43,12 +47,20 @@ function App() {
 
 	return (
 		<>
+			<WebStart />
 			<Nav
 				handleAddChar={handleAddChar}
 				handleChange={handleChange}
 				handleKeyDown={handleKeyDown}
 			/>
-			<Cards characters={characters} onClose={onClose} />
+			<Routes>
+				<Route
+					path="/home"
+					element={<Cards characters={characters} onClose={onClose} />}
+				/>
+				<Route path="/detail/:detailId" element={<Detail />} />
+				<Route path="/about" element={<About />} />
+			</Routes>
 		</>
 	);
 }

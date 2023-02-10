@@ -1,4 +1,7 @@
 .navBar {
 	display: flex;
 	border: 2px solid brown;
+	justify-content: space-around;
+	align-items: center;
+	text-decoration: none;
 }
