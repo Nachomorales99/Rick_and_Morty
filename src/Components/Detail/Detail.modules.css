@@ -1,0 +1,29 @@
+.card {
+	align-items: center;
+}
+
+.card-body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.card-text {
+	justify-content: center;
+}
+
+.detailimg {
+	width: auto;
+	height: auto;
+}
+.list-group {
+	width: 30%;
+}
+
+.list-group-item {
+	align-items: center;
+	justify-content: space-around;
+}
+#pisar {
+	display: flex;
+}
