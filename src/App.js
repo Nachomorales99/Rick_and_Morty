@@ -3,6 +3,7 @@ import Nav from './Components/Nav/Nav';
 import Cards from './Components/Cards/Cards';
 import Detail from './Components/Detail/Detail';
 import Form from './Components/Form/Form';
+// import Eror404 from './Components/Error404/Error404';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -83,7 +84,7 @@ const App = () => {
 					element={<Cards characters={characters} onClose={onClose} />}
 				/>
 				<Route path="/detail/:detailId" element={<Detail />} />
-				<Route />
+				{/* <Route path="*" element={<Eror404 />} /> */}
 				<Route />
 			</Routes>
 			<ToastContainer />

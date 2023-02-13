@@ -34,9 +34,9 @@ const Detail = () => {
 				<div className="card mb-3" key={character.id} id={character.id}>
 					<h3 className="card-header">{character.name}</h3>
 					<div className="card-body">
-						<h5 className="card-title">Me gustaria mostrar el origen</h5>
+						<h5 className="card-title">{character.origin?.name}</h5>
 						<h6 className="card-subtitle text-muted">
-							Me gustaria mostrar la localizacion
+							{character.location?.name}
 						</h6>
 					</div>
 					<img
@@ -47,8 +47,7 @@ const Detail = () => {
 
 					<div className="card-body">
 						<p className="card-text">
-							Me gustaria mostart la cantidad de capitulos que estuvo el
-							personaje
+							Este personaje sale en {character.episode?.length} episodios
 						</p>
 					</div>
 					<ul className="list-group list-group-flush">
