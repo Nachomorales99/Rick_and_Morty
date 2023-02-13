@@ -34,9 +34,9 @@ const Detail = () => {
 				<div className="card mb-3" key={character.id} id={character.id}>
 					<h3 className="card-header">{character.name}</h3>
 					<div className="card-body">
-						<h5 className="card-title">{character.origin?.name}</h5>
+						<h5 className="card-title">Origen: {character.origin?.name}</h5>
 						<h6 className="card-subtitle text-muted">
-							{character.location?.name}
+							Localizacion: {character.location?.name}
 						</h6>
 					</div>
 					<img
