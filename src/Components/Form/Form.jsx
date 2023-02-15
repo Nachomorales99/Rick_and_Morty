@@ -1,6 +1,7 @@
 import React from 'react';
 import validation from './validation';
 import { useState } from 'react';
+import './Form.modules.css';
 
 const Form = (props) => {
 	const [userData, setUserData] = useState({
