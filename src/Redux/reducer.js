@@ -63,14 +63,23 @@ function reducer(state = initialState, action) {
 			};
 
 		case FILTER:
-			let copyAllCharactersFavouriteFilter = [...state.allCharactersFavourite];
+			if (action.payload === 'all') {
+				return {
+					...state,
+					myFavorites: [...state.allCharactersFavourite],
+				};
+			} else {
+				let copyAllCharactersFavouriteFilter = [
+					...state.allCharactersFavourite,
+				];
 
-			return {
-				...state,
-				myFavorites: copyAllCharactersFavouriteFilter.filter(
-					(character) => character.gender === action.payload,
-				),
-			};
+				return {
+					...state,
+					myFavorites: copyAllCharactersFavouriteFilter.filter(
+						(character) => character.gender === action.payload,
+					),
+				};
+			}
 
 		case ORDER:
 			let copyAllCharactersFavouriteOrder = [...state.allCharactersFavourite];

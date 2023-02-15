@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
 import './Footer.modules.css';
 
 const Footer = (props) => {
@@ -179,9 +178,3 @@ const Footer = (props) => {
 };
 
 export default Footer;
-
-// {useLocation().pathname !== '/' ? (
-
-// 			) : (
-// 				''
-// 			)}
