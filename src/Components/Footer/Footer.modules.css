@@ -6,6 +6,10 @@
 	color: #737373;
 	margin-top: 1rem;
 }
+
+.site-footer .container {
+	min-height: auto;
+}
 .site-footer hr {
 	border-top-color: #bbb;
 	opacity: 0.5;
