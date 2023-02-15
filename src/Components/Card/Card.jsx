@@ -33,6 +33,11 @@ const Card = (props) => {
 		}
 	};
 
+	let handleClose = (event) => {
+		props.onClose(event);
+		props.deleteCharacterFavourite(Number(event.currentTarget.value));
+	};
+
 	return (
 		<>
 			<div className="blogcard">
@@ -71,7 +76,7 @@ const Card = (props) => {
 						<button
 							type="button"
 							className="btn btn-danger"
-							onClick={props.onClose}
+							onClick={handleClose}
 							value={props.id}
 						>
 							Close
