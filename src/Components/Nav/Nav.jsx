@@ -5,9 +5,10 @@ import { useLocation } from 'react-router-dom';
 import './Nav.modules.css';
 
 const Nav = (props) => {
+	let location = useLocation().pathname;
 	return (
 		<>
-			{useLocation().pathname !== '/' && '/404' ? (
+			{location !== '/' ? (
 				<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 					<div className="container-fluid">
 						<NavLink className="navbar-brand" onClick={props.handleRandom}>

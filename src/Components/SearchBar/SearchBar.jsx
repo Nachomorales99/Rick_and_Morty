@@ -36,7 +36,7 @@ const SearchBar = (props) => {
 						onClick={() => props.onSearch(inputChar)}
 						type="button"
 					>
-						Add character
+						Add Character
 					</button>
 				</div>
 			) : (

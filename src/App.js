@@ -74,8 +74,8 @@ const App = () => {
 	//Login
 	const [access, setAccess] = useState(true);
 	const navigate = useNavigate();
-	const username = 'nacho.morales5@gmail.com';
-	const password = 'Nacho123';
+	const username = 'hola@gmail.com';
+	const password = '123456';
 
 	//Validacion de usuario
 	const login = (userData) => {
@@ -87,7 +87,7 @@ const App = () => {
 		}
 	};
 	//Logout
-	const logout = (userData) => {
+	const logout = () => {
 		setAccess(false);
 		setCharacters([]);
 		navigate('/');

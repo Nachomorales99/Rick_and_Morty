@@ -28,7 +28,7 @@ const Cards = (props) => {
 						/>
 					))
 				) : (
-					<h3>No hay persoanjes</h3>
+					<h3>No hay personajes</h3>
 				)}
 			</Contenedor>
 		</>

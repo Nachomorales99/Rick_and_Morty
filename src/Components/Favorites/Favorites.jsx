@@ -3,11 +3,12 @@ import Cards from '../Cards/Cards';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { filterCards, orderCards } from '../../Redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Favorites.modules.css';
 
 const Favorites = (props) => {
 	let dispatch = useDispatch();
+	let favorites = useSelector((state) => state.allCharactersFavourite);
 
 	let handleDispatch = (event) => {
 		if (
@@ -23,7 +24,6 @@ const Favorites = (props) => {
 	return (
 		<>
 			<h2 className="favoritesTitle">My favorites</h2>
-
 			<div>
 				<div className="filterOrder">
 					<div className="filter">
@@ -54,7 +54,22 @@ const Favorites = (props) => {
 						</div>
 					</div>
 				</div>
-				<Cards characters={props.myFavorites} />
+
+				{favorites.length === 0 ? (
+					<div className="card border-warning mb-3">
+						<div className="card-body">
+							<h4 className="card-title">Sujetos de prueba</h4>
+							<p className="card-text">
+								Parece que Morty otra vez entro al laboratorio y rompio todos
+								los frascos de los experimentos de Rick
+							</p>
+							<p className="card-text">Agregue aqui nuevos personajes</p>
+						</div>
+					</div>
+				) : (
+					<Cards characters={props.myFavorites} />
+				)}
+
 				<NavLink to={'/home'}>
 					<button type="button" className="btn btn-light">
 						Volver
