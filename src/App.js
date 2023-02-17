@@ -6,8 +6,6 @@ import Form from './Components/Form/Form';
 import Footer from './Components/Footer/Footer';
 import Favorites from './Components/Favorites/Favorites';
 import Error404 from './Components/Error404/Error404';
-import About from './Components/About/About';
-import Contact from './Components/Contact/Contact';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -110,8 +108,6 @@ const App = () => {
 				/>
 				<Route path="/detail/:detailId" element={<Detail />} />
 				<Route path="/favorites" element={<Favorites />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/contact" element={<Contact />} />
 			</Routes>
 			<Footer logout={logout} />
 			<ToastContainer />

@@ -1,0 +1,20 @@
+.card {
+	margin-bottom: 0;
+	margin-top: 0;
+	border: 0;
+}
+.card-header {
+	font-size: 30px;
+}
+
+.card .card-header {
+	color: #44d9e8;
+}
+h4 {
+	color: #44d9e8;
+}
+
+.fotito {
+	width: 500px;
+	height: 500px;
+}

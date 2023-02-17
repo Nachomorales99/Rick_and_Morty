@@ -31,16 +31,6 @@ const Nav = (props) => {
 								Favorites
 							</NavLink>
 						</li>
-						<li className="nav-item">
-							<NavLink className="nav-link" to="/about">
-								About
-							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink className="nav-link" to="/contact">
-								Contact
-							</NavLink>
-						</li>
 						<SearchBar onSearch={props.onSearch} />
 					</div>
 				</nav>
