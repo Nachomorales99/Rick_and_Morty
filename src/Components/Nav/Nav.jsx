@@ -7,10 +7,10 @@ import './Nav.modules.css';
 const Nav = (props) => {
 	return (
 		<>
-			{useLocation().pathname !== '/' ? (
+			{useLocation().pathname !== '/' && '/404' ? (
 				<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 					<div className="container-fluid">
-						<NavLink className="navbar-brand" to="/home">
+						<NavLink className="navbar-brand" onClick={props.handleRandom}>
 							<img
 								className="navbarlogo"
 								src="https://res.cloudinary.com/nacho-morales/image/upload/v1676213998/Code%20Img/Logo_vghjwu.png"
@@ -33,6 +33,11 @@ const Nav = (props) => {
 						<li className="nav-item">
 							<NavLink className="nav-link" to="/about">
 								About
+							</NavLink>
+						</li>
+						<li className="nav-item">
+							<NavLink className="nav-link" to="/contact">
+								Contact
 							</NavLink>
 						</li>
 						<SearchBar onSearch={props.onSearch} />

@@ -105,7 +105,7 @@ const Footer = (props) => {
 									<NavLink to="/about">About </NavLink>
 								</li>
 								<li>
-									<NavLink to="/about">Contact </NavLink>
+									<NavLink to="/contact">Contact </NavLink>
 								</li>
 								<li>
 									<NavLink to="/favorites">Favorites </NavLink>

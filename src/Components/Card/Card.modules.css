@@ -87,6 +87,10 @@
 .blogcard:hover .details {
 	left: 0%;
 }
+
+.btn {
+	margin: 2rem;
+}
 @media (min-width: 640px) {
 	.blogcard {
 		flex-direction: row;

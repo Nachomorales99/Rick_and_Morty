@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { filterCards, orderCards } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
+import './Favorites.modules.css';
 
 const Favorites = (props) => {
 	let dispatch = useDispatch();
@@ -18,28 +19,46 @@ const Favorites = (props) => {
 			dispatch(filterCards(event.target.value));
 		}
 	};
-
+	console.log(props.state?.myFavorites.length);
 	return (
 		<>
+			<h2 className="favoritesTitle">My favorites</h2>
+
 			<div>
-				<div>
-					<span>Order</span>
-					<select onChange={handleDispatch}>
-						<option value="Ascendente">Ascendente</option>
-						<option value="Descendente">Descendente</option>
-					</select>
-					<span>Gender</span>
-					<select onChange={handleDispatch}>
-						<option value="all">All</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-						<option value="Genderless">Genderless</option>
-						<option value="unknown">Unknown</option>
-					</select>
+				<div className="filterOrder">
+					<div className="filter">
+						<h4>Order</h4>
+						<div className="select">
+							<select name="format" id="format" onChange={handleDispatch}>
+								<option selected disabled>
+									Choose order
+								</option>
+								<option value="Ascendente">Ascendente</option>
+								<option value="Descendente">Descendente</option>
+							</select>
+						</div>
+					</div>
+					<div className="order">
+						<h4>Filter</h4>
+						<div className="select">
+							<select name="format" id="format" onChange={handleDispatch}>
+								<option selected disabled>
+									Choose filter
+								</option>
+								<option value="all">All</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Genderless">Genderless</option>
+								<option value="unknown">unknown</option>
+							</select>
+						</div>
+					</div>
 				</div>
 				<Cards characters={props.myFavorites} />
 				<NavLink to={'/home'}>
-					<button>Volver</button>
+					<button type="button" className="btn btn-light">
+						Volver
+					</button>
 				</NavLink>
 			</div>
 		</>

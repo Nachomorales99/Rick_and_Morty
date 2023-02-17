@@ -2,6 +2,7 @@ import React from 'react';
 import validation from './validation';
 import { useState } from 'react';
 import './Form.modules.css';
+import { toast } from 'react-toastify';
 
 const Form = (props) => {
 	const [userData, setUserData] = useState({
@@ -9,10 +10,7 @@ const Form = (props) => {
 		password: '',
 	});
 
-	const [userErrors, setUserErrors] = useState({
-		username: '',
-		password: '',
-	});
+	const [userErrors, setUserErrors] = useState({});
 
 	const handleInputChange = (event) => {
 		setUserData({ ...userData, [event.target.name]: event.target.value });
@@ -23,7 +21,26 @@ const Form = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		props.login(userData);
+
+		if (Object.keys(userErrors).length === 0) {
+			props.login(userData);
+		} else {
+			alertadd('Username y/o password incorrectos');
+		}
+	};
+
+	//Alert error
+	let alertadd = (mensaje) => {
+		toast.error(mensaje, {
+			position: 'top-center',
+			autoClose: 2000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: false,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
 	};
 	return (
 		<>
@@ -84,9 +101,7 @@ const Form = (props) => {
 							{userErrors.password && <span>{userErrors.password}</span>}
 							<br />
 						</div>
-						<button type="submit" className="btn btn-primary">
-							Login
-						</button>
+						<button className="btn btn-primary">Login</button>
 					</form>
 				</div>
 			</div>

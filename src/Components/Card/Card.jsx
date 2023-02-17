@@ -59,7 +59,7 @@ const Card = (props) => {
 						<h1>{props.name}</h1>
 					</NavLink>
 					<p>
-						Personaje de ficcion creado por Justin Roiland y Dan Harmon para la
+						Personaje de ficción creado por Justin Roiland y Dan Harmon para la
 						brillante serie de animacion adulta "Rick and Morty". La serie sigue
 						las desventuras del científico alcohólico Rick y su nervioso nieto
 						Morty, quienes dividen su tiempo entre la vida familiar doméstica y
@@ -67,9 +67,21 @@ const Card = (props) => {
 					</p>
 
 					{isFav ? (
-						<button onClick={handleFavorite}>❤️</button>
+						<button
+							type="button"
+							className="btn btn-warning"
+							onClick={handleFavorite}
+						>
+							Favorite
+						</button>
 					) : (
-						<button onClick={handleFavorite}>🤍</button>
+						<button
+							type="button"
+							className="btn btn-outline-warning"
+							onClick={handleFavorite}
+						>
+							Favorite
+						</button>
 					)}
 
 					{useLocation().pathname === '/home' ? (

@@ -5,7 +5,9 @@ import Detail from './Components/Detail/Detail';
 import Form from './Components/Form/Form';
 import Footer from './Components/Footer/Footer';
 import Favorites from './Components/Favorites/Favorites';
-// import Eror404 from './Components/Error404/Error404';
+import Error404 from './Components/Error404/Error404';
+import About from './Components/About/About';
+import Contact from './Components/Contact/Contact';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -26,6 +28,25 @@ const App = () => {
 						: setCharacters([...characters, data])
 					: alertadd('No hay personaje con ese ID');
 			});
+	};
+
+	//Boton random
+	let handleRandom = () => {
+		let flag = true;
+		let random = 0;
+
+		while (flag) {
+			random = Math.floor(Math.random() * (1 - 826)) + 826;
+
+			if (
+				characters.length === 0 ||
+				characters.some((character) => character.id !== random)
+			) {
+				flag = false;
+			}
+		}
+
+		onSearch(random);
 	};
 
 	//Alert error
@@ -51,14 +72,10 @@ const App = () => {
 	};
 
 	//Login
-	const [access, setAccess] = useState(false);
+	const [access, setAccess] = useState(true);
 	const navigate = useNavigate();
 	const username = 'nacho.morales5@gmail.com';
 	const password = 'Nacho123';
-
-	useEffect(() => {
-		!access && navigate('/');
-	}, [access, navigate]);
 
 	//Validacion de usuario
 	const login = (userData) => {
@@ -76,18 +93,25 @@ const App = () => {
 		navigate('/');
 	};
 
+	useEffect(() => {
+		!access && navigate('/');
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [access]);
+
 	return (
 		<>
-			<Nav onSearch={onSearch} logout={logout} />
+			<Nav onSearch={onSearch} logout={logout} handleRandom={handleRandom} />
 			<Routes>
+				<Route path="*" element={<Error404 />} />
 				<Route path="/" element={<Form login={login} />} />
 				<Route
 					path="/home"
 					element={<Cards characters={characters} onClose={onClose} />}
 				/>
 				<Route path="/detail/:detailId" element={<Detail />} />
-				{/* <Route path="*" element={<Eror404 />} /> */}
 				<Route path="/favorites" element={<Favorites />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/contact" element={<Contact />} />
 			</Routes>
 			<Footer logout={logout} />
 			<ToastContainer />

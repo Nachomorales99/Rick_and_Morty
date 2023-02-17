@@ -3,6 +3,7 @@ import {
 	DELETE_CHARACTER,
 	ADD_CHARACTER_FAVOURITE,
 	DELETE_CHARACTER_FAVOURITE,
+	DELETE_ALLCHARACTER_FAVOURITE,
 	FILTER,
 	ORDER,
 } from './actions';
@@ -15,16 +16,16 @@ const initialState = {
 
 function reducer(state = initialState, action) {
 	switch (action.type) {
-		case ADD_CHARACTER:
-			return {
-				...state,
-				allCharacters: [...state.allCharacters, action.payload],
-			};
+		// case ADD_CHARACTER:
+		// 	return {
+		// 		...state,
+		// 		allCharacters: [...state.allCharacters, action.payload],
+		// 	};
 
 		case DELETE_CHARACTER:
-			let newAllCharacters = state.allCharacters.filter(
-				(character) => character.id !== action.payload,
-			);
+			// let newAllCharacters = state.allCharacters.filter(
+			// 	(character) => character.id !== action.payload,
+			// );
 
 			let newAllCharactersFavourite = state.allCharactersFavourite.filter(
 				(character) => character.id !== action.payload,
@@ -36,7 +37,7 @@ function reducer(state = initialState, action) {
 
 			return {
 				...state,
-				allCharacters: [...newAllCharacters],
+				// allCharacters: [...newAllCharacters],
 				allCharactersFavourite: [...newAllCharactersFavourite],
 				myFavorites: [...newMyFavoritesA],
 			};
@@ -60,6 +61,12 @@ function reducer(state = initialState, action) {
 				...state,
 				myFavorites: [...newMyFavoritesB],
 				allCharactersFavourite: [...newMyFavoritesB],
+			};
+
+		case DELETE_ALLCHARACTER_FAVOURITE:
+			return {
+				...state,
+				allCharactersFavourite: [],
 			};
 
 		case FILTER:
