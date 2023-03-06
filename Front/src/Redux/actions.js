@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 // export const ADD_CHARACTER = 'ADD_CHARACTER';
 export const DELETE_CHARACTER = 'DELETE_CHARACTER';
 export const ADD_CHARACTER_FAVOURITE = 'ADD_CHARACTER_FAVOURITE';
@@ -27,31 +25,11 @@ export let deleteCharacter = (id) => {
 };
 
 export let addCharacterFavourite = (character) => {
-	return async (dispatch) => {
-		let response = await axios.post(
-			'http://localhost:3001/rickandmorty/fav',
-			character,
-		);
-
-		let data = response.data;
-
-		return dispatch({ type: ADD_CHARACTER_FAVOURITE, payload: data });
-	};
+	return { type: ADD_CHARACTER_FAVOURITE, payload: character };
 };
 
 export let deleteCharacterFavourite = (id) => {
-	return async (dispatch) => {
-		let response = await axios.delete(
-			`http://localhost:3001/rickandmorty/fav/${id}`,
-		);
-
-		let data = response.data;
-
-		return dispatch({
-			type: DELETE_CHARACTER_FAVOURITE,
-			payload: data,
-		});
-	};
+	return { type: DELETE_CHARACTER_FAVOURITE, payload: id };
 };
 
 export let deleteAllCharacterFavourite = () => {

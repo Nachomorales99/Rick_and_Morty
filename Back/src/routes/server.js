@@ -17,6 +17,7 @@ app.get('/rickandmorty/character/:id', async (req, res) => {
 
 		let character = {
 			id: data.id,
+			status: data.status,
 			name: data.name,
 			species: data.species,
 			gender: data.gender,
@@ -43,6 +44,7 @@ app.get('/rickandmorty/detail/:detailId', async (req, res) => {
 			id: data.id,
 			name: data.name,
 			species: data.species,
+			status: data.status,
 			gender: data.gender,
 			image: data.image,
 			origin: data.origin.name,
