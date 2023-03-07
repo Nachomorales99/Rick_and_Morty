@@ -10,43 +10,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAllCharacter } from './Redux/Actions/actions';
 
 const App = () => {
 	//State de personajes
-	const [characters, setCharacters] = useState([]);
-
-	//Buscar personaje en la API
-	let onSearch = (id) => {
-		fetch(`http://localhost:3001/rickandmorty/character/${id}`)
-			.then((response) => response.json())
-			.then((data) => {
-				data.name
-					? characters.some((character) => character.id === data.id)
-						? alertadd('Ya ingreso ese personaje')
-						: setCharacters([...characters, data])
-					: alertadd('No hay personaje con ese ID');
-			});
-	};
-
-	//Boton random
-	let handleRandom = () => {
-		let flag = true;
-		let random = 0;
-
-		while (flag) {
-			random = Math.floor(Math.random() * (1 - 826)) + 826;
-
-			if (
-				characters.length === 0 ||
-				// eslint-disable-next-line
-				characters.some((character) => character.id !== random)
-			) {
-				flag = false;
-			}
-		}
-
-		onSearch(random);
-	};
+	let characters = useSelector((state) => state.allCharacters);
+	let dispatch = useDispatch();
 
 	//Alert error
 	let alertadd = (mensaje) => {
@@ -60,14 +30,6 @@ const App = () => {
 			progress: undefined,
 			theme: 'colored',
 		});
-	};
-	//Eliminar card
-	let onClose = (event) => {
-		setCharacters(
-			characters.filter(
-				(character) => character.id !== Number(event.currentTarget.value),
-			),
-		);
 	};
 
 	//Login
@@ -88,7 +50,7 @@ const App = () => {
 	//Logout
 	const logout = () => {
 		setAccess(false);
-		setCharacters([]);
+		dispatch(deleteAllCharacter());
 		navigate('/');
 	};
 
@@ -99,14 +61,11 @@ const App = () => {
 
 	return (
 		<>
-			<Nav onSearch={onSearch} logout={logout} handleRandom={handleRandom} />
+			<Nav logout={logout} />
 			<Routes>
 				<Route path="*" element={<Error404 />} />
 				<Route path="/" element={<Form login={login} />} />
-				<Route
-					path="/home"
-					element={<Cards characters={characters} onClose={onClose} />}
-				/>
+				<Route path="/home" element={<Cards characters={characters} />} />
 				<Route path="/detail/:detailId" element={<Detail />} />
 				<Route path="/favorites" element={<Favorites />} />
 			</Routes>

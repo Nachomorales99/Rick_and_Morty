@@ -2,7 +2,7 @@ import React from 'react';
 import Cards from '../Cards/Cards';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterCards, orderCards } from '../../Redux/actions';
+import { filterCards, orderCards } from '../../Redux/Actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import './Favorites.modules.css';
 

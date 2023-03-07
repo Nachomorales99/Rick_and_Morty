@@ -2,6 +2,9 @@ import React from 'react';
 import Card from '../Card/Card.jsx';
 import styled from 'styled-components';
 import './Cards.modules.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCharacter } from '../../Redux/Actions/actions.js';
 
 const Contenedor = styled.div`
 	display: flex;
@@ -11,7 +14,19 @@ const Contenedor = styled.div`
 `;
 
 const Cards = (props) => {
-	const { characters } = props;
+	let { characters } = props;
+	let dispatch = useDispatch();
+	let allCharacters = useSelector((state) => state.allCharacters);
+
+	useEffect(() => {
+		if (!allCharacters.length) {
+			dispatch(addCharacter(1));
+			dispatch(addCharacter(2));
+			dispatch(addCharacter(3));
+			dispatch(addCharacter(4));
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>
@@ -26,16 +41,15 @@ const Cards = (props) => {
 							gender={character.gender}
 							image={character.image}
 							status={character.status}
-							onClose={props.onClose}
 						/>
 					))
 				) : (
 					<div className="card mb-3">
-						<div className="card-header">Start!</div>
+						<div className="card-header">
+							Muy bien Morty... no hay nadie aqui
+						</div>
 						<div className="card-body">
-							<h4 className="card-title">
-								Pulsar el logo de la nav para comenzar
-							</h4>
+							<h4 className="card-title"> Pulse el logo!</h4>
 							<img
 								className="fotito"
 								src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c50a4a55883023.5996f8afa3f5c.gif"

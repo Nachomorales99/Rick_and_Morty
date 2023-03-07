@@ -16,7 +16,7 @@ const Error404 = () => {
 						<br />
 						Toca el portal para volver a la Tierra (C-137)
 					</p>
-					<NavLink to="/home">
+					<NavLink to={'/home'}>
 						<button type="button">Portal a la Tierra (C-137)</button>
 					</NavLink>
 				</div>

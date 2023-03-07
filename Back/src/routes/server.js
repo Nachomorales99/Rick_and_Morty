@@ -59,27 +59,27 @@ app.get('/rickandmorty/detail/:detailId', async (req, res) => {
 });
 
 //Obtengo los personajes fav
-let fav = [];
+// let fav = [];
 
-app.get('/rickandmorty/fav', (req, res) => {
-	res.status(200).json(fav);
-});
+// app.get('/rickandmorty/fav', (req, res) => {
+// 	res.status(200).json(fav);
+// });
 
-//Posteo los personajes fav
-app.post('/rickandmorty/fav', (req, res) => {
-	fav.push(req.body);
+// //Posteo los personajes fav
+// app.post('/rickandmorty/fav', (req, res) => {
+// 	fav.push(req.body);
 
-	res.status(200).send('Se guardaron correctamente');
-});
+// 	res.status(200).send('Se guardaron correctamente');
+// });
 
-//Elimino personaje fav
-app.delete('/rickandmorty/fav/:id', (req, res) => {
-	let { id } = req.params;
+// //Elimino personaje fav
+// app.delete('/rickandmorty/fav/:id', (req, res) => {
+// 	let { id } = req.params;
 
-	let favFilteres = fav.filter((character) => character.id !== Number(id));
-	fav = favFilteres;
+// 	let favFilteres = fav.filter((character) => character.id !== Number(id));
+// 	fav = favFilteres;
 
-	res.status(200).send('Se elimino correctamente');
-});
+// 	res.status(200).send('Se elimino correctamente');
+// });
 
 module.exports = app;

@@ -6,7 +6,7 @@ import {
 	deleteCharacter,
 	addCharacterFavourite,
 	deleteCharacterFavourite,
-} from '../../Redux/actions';
+} from '../../Redux/Actions/actions';
 import { connect } from 'react-redux';
 
 const Card = (props) => {
@@ -33,8 +33,10 @@ const Card = (props) => {
 		}
 	};
 
+	//Eliminar card
+
 	let handleClose = (event) => {
-		props.onClose(event);
+		props.deleteCharacter(Number(event.currentTarget.value));
 		props.deleteCharacterFavourite(Number(event.currentTarget.value));
 	};
 
