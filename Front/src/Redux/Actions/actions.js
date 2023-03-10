@@ -4,6 +4,7 @@ import {
 	DELETE_ALLCHARACTER,
 	ADD_CHARACTER_FAVOURITE,
 	DELETE_CHARACTER_FAVOURITE,
+	DELETE_ALL_CHARACTER_FAVOURITE,
 	FILTER,
 	ORDER,
 } from './type';
@@ -51,6 +52,10 @@ export let addCharacterFavourite = (character) => {
 
 export let deleteCharacterFavourite = (id) => {
 	return { type: DELETE_CHARACTER_FAVOURITE, payload: id };
+};
+
+export let deleteAllCharacterFavourite = (id) => {
+	return { type: DELETE_ALL_CHARACTER_FAVOURITE, payload: id };
 };
 
 export let filterCards = (status) => {

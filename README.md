@@ -56,12 +56,6 @@
 
 > Bootstrap con Bootswach
 
-## Aspectos a mejorar
-
-> Arreglar bugs de la tura /favorites que muestra el cartel de bienvenida si el filtro no tiene nada para mostrar
-> Arreglar ruta /404 para que no aparezcan atras footer y nav
-> Abierto a criticas y recomendaciones para mejorar
-
 ## Listos? Comencemos
 
 ![Rick i'm in](https://media.tenor.com/hQU3ltzIjCsAAAAC/rick-and-morty-heist.gif)

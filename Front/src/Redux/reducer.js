@@ -4,6 +4,7 @@ import {
 	DELETE_ALLCHARACTER,
 	ADD_CHARACTER_FAVOURITE,
 	DELETE_CHARACTER_FAVOURITE,
+	DELETE_ALL_CHARACTER_FAVOURITE,
 	FILTER,
 	ORDER,
 } from './Actions/type';
@@ -69,6 +70,13 @@ function reducer(state = initialState, action) {
 				...state,
 				myFavorites: [...newMyFavoritesB],
 				allCharactersFavourite: [...newMyFavoritesB],
+			};
+
+		case DELETE_ALL_CHARACTER_FAVOURITE:
+			return {
+				...state,
+				myFavorites: [],
+				allCharactersFavourite: [],
 			};
 
 		case FILTER:

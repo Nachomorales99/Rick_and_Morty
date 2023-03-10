@@ -8,7 +8,8 @@ import './Favorites.modules.css';
 
 const Favorites = (props) => {
 	let dispatch = useDispatch();
-	let favorites = useSelector((state) => state.allCharactersFavourite);
+	let allFavorites = useSelector((state) => state.allCharactersFavourite);
+	let favorites = useSelector((state) => state.myFavorites);
 
 	let handleDispatch = (event) => {
 		if (
@@ -20,7 +21,6 @@ const Favorites = (props) => {
 			dispatch(filterCards(event.target.value));
 		}
 	};
-	console.log(props.state?.myFavorites.length);
 	return (
 		<>
 			<h2 className="favoritesTitle">My favorites</h2>
@@ -55,7 +55,7 @@ const Favorites = (props) => {
 					</div>
 				</div>
 
-				{favorites.length === 0 ? (
+				{allFavorites.length === 0 || favorites.length === 0 ? (
 					<div className="card border-warning mb-3">
 						<div className="card-body">
 							<h4 className="card-title">Sujetos de prueba</h4>

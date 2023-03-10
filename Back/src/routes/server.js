@@ -1,12 +1,18 @@
 const express = require('express');
-const app = express();
+const server = express();
 const cors = require('cors');
+const morgan = require('morgan');
+const getAllChars = require('../controllers/getAllChars');
+const getAllFavorites = require('../controllers/getAllFavorites');
+const deleteFavoriteById = require('../controllers/deleteFavoriteById');
+const postFav = require('../controllers/postFav');
 
-app.use(cors());
-app.use(express.json());
+server.use(express.json()); // para que funcinoe mi sv con formato JSON
+server.use(cors()); // habilito a todos a hacer solicitudes a mi servidor
+server.use(morgan('dev'));
 
 //Obtengo personaje por ID
-app.get('/rickandmorty/character/:id', async (req, res) => {
+server.get('/rickandmorty/character/:id', async (req, res) => {
 	try {
 		let { id } = req.params;
 
@@ -31,7 +37,7 @@ app.get('/rickandmorty/character/:id', async (req, res) => {
 });
 
 //Obtengo el detalle del personaje por ID
-app.get('/rickandmorty/detail/:detailId', async (req, res) => {
+server.get('/rickandmorty/detail/:detailId', async (req, res) => {
 	try {
 		let { detailId } = req.params;
 
@@ -58,28 +64,56 @@ app.get('/rickandmorty/detail/:detailId', async (req, res) => {
 	}
 });
 
-//Obtengo los personajes fav
-// let fav = [];
+//Obtengo 100 personajes cargados en la DB
+server.get('/rickandmorty/allCharacters', async (req, res) => {
+	try {
+		let allCharacters = await getAllChars();
+		res.status(200).json(allCharacters);
+	} catch (error) {
+		res.status(404).send('Error al traer personjes');
+	}
+});
 
-// app.get('/rickandmorty/fav', (req, res) => {
-// 	res.status(200).json(fav);
-// });
+//Obtengo los personajes fav de la db
 
-// //Posteo los personajes fav
-// app.post('/rickandmorty/fav', (req, res) => {
-// 	fav.push(req.body);
+server.get('/rickandmorty/fav', async (req, res) => {
+	try {
+		let allFavorites = await getAllFavorites();
 
-// 	res.status(200).send('Se guardaron correctamente');
-// });
+		if (allFavorites.error) throw new Error(allFavorites.error);
 
-// //Elimino personaje fav
-// app.delete('/rickandmorty/fav/:id', (req, res) => {
-// 	let { id } = req.params;
+		res.status(200).json(allFavorites);
+	} catch (error) {
+		res.status(404).send(error.message);
+	}
+});
 
-// 	let favFilteres = fav.filter((character) => character.id !== Number(id));
-// 	fav = favFilteres;
+//Posteo los personajes fav a la db
+server.post('/rickandmorty/fav', async (req, res) => {
+	try {
+		let characterFav = await postFav(req.body);
 
-// 	res.status(200).send('Se elimino correctamente');
-// });
+		if (characterFav.error) throw new Error(characterFav.error);
 
-module.exports = app;
+		res.status(200).json(characterFav);
+	} catch (error) {
+		res.status(404).send(error.message);
+	}
+});
+
+//Elimino personaje fav de la db
+server.delete('/rickandmorty/fav/:id', async (req, res) => {
+	try {
+		let { id } = req.params;
+
+		let deleteFavorite = await deleteFavoriteById(Number(id));
+
+		if (deleteFavorite.error) throw new Error(deleteFavorite.error);
+
+		res.status(200).send(deleteFavorite);
+	} catch (error) {
+		res.status(404).send(error.message);
+	}
+});
+
+module.exports = { server };

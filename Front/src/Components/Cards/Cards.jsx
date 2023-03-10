@@ -49,7 +49,7 @@ const Cards = (props) => {
 							Muy bien Morty... no hay nadie aqui
 						</div>
 						<div className="card-body">
-							<h4 className="card-title"> Pulse el logo!</h4>
+							<h4 className="card-title"> Inivitemos algunos amigos</h4>
 							<img
 								className="fotito"
 								src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c50a4a55883023.5996f8afa3f5c.gif"
