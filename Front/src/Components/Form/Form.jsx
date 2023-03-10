@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 
 const Form = (props) => {
 	const [userData, setUserData] = useState({
-		username: '',
-		password: '',
+		username: 'hola@gmail.com',
+		password: '123456',
 	});
 
 	const [userErrors, setUserErrors] = useState({});
