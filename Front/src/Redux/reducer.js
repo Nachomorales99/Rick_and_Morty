@@ -20,7 +20,7 @@ function reducer(state = initialState, action) {
 		case ADD_CHARACTER:
 			return {
 				...state,
-				allCharacters: [...state.allCharacters, action.payload],
+				allCharacters: [action.payload, ...state.allCharacters],
 			};
 
 		case DELETE_CHARACTER:
